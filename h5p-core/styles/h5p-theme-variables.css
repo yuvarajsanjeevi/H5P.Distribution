@@ -1,93 +1,74 @@
 :root {
-  --h5p-theme-main-cta-base: #1d5cff;           /* legacy: element button blue */
-  --h5p-theme-secondary-cta-base: #0085FF;      /* legacy: progressbar active fill */
-  --h5p-theme-alternative-base: #F1F5FB;
-  --h5p-theme-background: #F9FBFF;
-  --h5p-theme-focus: #457ad1;
-
-  --h5p-theme-main-cta-light: #0097fd;          /* legacy: scrollbar / slide button blue */
-  --h5p-theme-main-cta-dark: #096bcb;           /* legacy: gradient dark end */
-  --h5p-theme-contrast-cta: #EBF7FF;
-  --h5p-theme-contrast-cta-white: #457ad1;      /* legacy: focus outline color */
-
-  --h5p-theme-contrast-cta-light: rgba(121,171,253,.2); /* legacy: focus background */
-
-  --h5p-theme-secondary-cta-light: #F5F7FA;
-  --h5p-theme-secondary-cta-dark: #1a73d9;      /* legacy: progressbar gradient end */
-  --h5p-theme-secondary-contrast-cta: #202122;
-  --h5p-theme-secondary-contrast-cta-hover: #EBF7FF;
-
-  --h5p-theme-alternative-light: #F7F9FD;
-  --h5p-theme-alternative-dark: #DBE5F5;
-  --h5p-theme-alternative-darker: #C7D7EF;
-
-  --h5p-theme-text-primary: #101729;
-  --h5p-theme-text-secondary: #354054;
-  --h5p-theme-text-third: #737373;
-  --h5p-theme-ui-base: #FFFFFF;
-  --h5p-theme-stroke-1: #DCDFFA;
-  --h5p-theme-stroke-2: #EDEEFB;
-  --h5p-theme-stroke-3: #E5E5E5;
-  --h5p-theme-border-radius-large: 0.5rem;
-  --h5p-theme-border-radius-medium: 0.375rem;
-  --h5p-theme-border-radius-small: 0.25rem;
-  --h5p-theme-font-name: "Inter", sans-serif;
-
-  --h5p-theme-feedback-correct-main: #256D1D;
-  --h5p-theme-feedback-correct-secondary: #f3fcf0;
-  --h5p-theme-feedback-correct-third: #cff1c2;
-
-  --h5p-theme-feedback-incorrect-main: #a13236;
-  --h5p-theme-feedback-incorrect-secondary: #faf0f4;
-  --h5p-theme-feedback-incorrect-third: #f6dce7;
-
-  --h5p-theme-feedback-neutral-main: #E6C81D;
-  --h5p-theme-feedback-neutral-secondary: #5E4817;
-  --h5p-theme-feedback-neutral-third: #F0EBCB;
-
-  /* SPACING */
-
-  /* Small (default) */
-  --h5p-theme-spacing-xl-primary-small: calc(var(--h5p-theme-spacing-xl-primary-medium)*0.8);
-  --h5p-theme-spacing-primary-small: calc(var(--h5p-theme-spacing-primary-medium)*0.8);
-  --h5p-theme-spacing-secondary-small: calc(var(--h5p-theme-spacing-secondary-medium)*0.8);
-  --h5p-theme-spacing-third-small: calc(var(--h5p-theme-spacing-third-medium)*0.8);
-  --h5p-theme-spacing-fourth-small: calc(var(--h5p-theme-spacing-fourth-medium)*0.8);
-  --h5p-theme-spacing-fifth-small: calc(var(--h5p-theme-spacing-fifth-medium)*0.8);
-
-  --h5p-theme-font-size-xxl-small: calc(var(--h5p-theme-font-size-xxl-medium)*1);
-  --h5p-theme-font-size-xl-small: calc(var(--h5p-theme-font-size-xl-medium)*1);
-  --h5p-theme-font-size-l-small: calc(var(--h5p-theme-font-size-l-medium)*1);
-  --h5p-theme-font-size-m-small: calc(var(--h5p-theme-font-size-m-medium)*1);
-  --h5p-theme-font-size-s-small: calc(var(--h5p-theme-font-size-s-medium)*1);
-
-  /* Medium */
-  --h5p-theme-spacing-xl-primary-medium: calc(var(--h5p-theme-spacing-xl-primary-large)*0.8);
-  --h5p-theme-spacing-primary-medium: calc(var(--h5p-theme-spacing-primary-large)*0.8);
-  --h5p-theme-spacing-secondary-medium: calc(var(--h5p-theme-spacing-secondary-large)*0.8);
-  --h5p-theme-spacing-third-medium: calc(var(--h5p-theme-spacing-third-large)*0.8);
-  --h5p-theme-spacing-fourth-medium: calc(var(--h5p-theme-spacing-fourth-large)*0.8);
-  --h5p-theme-spacing-fifth-medium: calc(var(--h5p-theme-spacing-fifth-large)*0.8);
-
-  --h5p-theme-font-size-xxl-medium: calc(var(--h5p-theme-font-size-xxl-large)*0.9);
-  --h5p-theme-font-size-xl-medium: calc(var(--h5p-theme-font-size-xl-large)*0.9);
-  --h5p-theme-font-size-l-medium: calc(var(--h5p-theme-font-size-l-large)*0.9);
-  --h5p-theme-font-size-m-medium: calc(var(--h5p-theme-font-size-m-large)*0.9);
-  --h5p-theme-font-size-s-medium: calc(var(--h5p-theme-font-size-s-large)*0.9);
-
-  /* Large */
-  --h5p-theme-spacing-xl-primary-large: 3rem;
-  --h5p-theme-spacing-primary-large: 2rem;
-  --h5p-theme-spacing-secondary-large: 1.5rem;
-  --h5p-theme-spacing-third-large: 1rem;
-  --h5p-theme-spacing-fourth-large: 0.65rem;
-  --h5p-theme-spacing-fifth-large: 0.5rem;
-
-  --h5p-theme-font-size-xxl-large: 1.5rem;
-  --h5p-theme-font-size-xl-large: 1.25rem;
-  --h5p-theme-font-size-l-large: 1.125rem;
-  --h5p-theme-font-size-m-large: 1rem;
-  --h5p-theme-font-size-s-large: 0.85rem;
+    --h5p-theme-main-cta-base: #006fbf;
+    --h5p-theme-secondary-cta-base: #e3e9f1;
+    --h5p-theme-alternative-base: #f1f5fb;
+    --h5p-theme-background: #f9fbff;
+    --h5p-theme-focus: #006fbf;
+    --h5p-theme-main-cta-light: #007cd6;
+    --h5p-theme-main-cta-dark: #005fa3;
+    --h5p-theme-contrast-cta: #ebf7ff;
+    --h5p-theme-contrast-cta-white: #006fbf;
+    --h5p-theme-contrast-cta-light: color-mix(in srgb, var(--h5p-theme-main-cta-base), transparent 90%);
+    --h5p-theme-secondary-cta-light: #f5f7fa;
+    --h5p-theme-secondary-cta-dark: #d3dce9;
+    --h5p-theme-secondary-contrast-cta: #202122;
+    --h5p-theme-secondary-contrast-cta-hover: #ebf7ff;
+    --h5p-theme-alternative-light: #f7f9fd;
+    --h5p-theme-alternative-dark: #dbe5f5;
+    --h5p-theme-alternative-darker: #c7d7ef;
+    --h5p-theme-text-primary: #101729;
+    --h5p-theme-text-secondary: #354054;
+    --h5p-theme-text-third: #737373;
+    --h5p-theme-ui-base: #fff;
+    --h5p-theme-stroke-1: #dcdffa;
+    --h5p-theme-stroke-2: #edeefb;
+    --h5p-theme-stroke-3: #e5e5e5;
+    --h5p-theme-border-radius-large: 0.5rem;
+    --h5p-theme-border-radius-medium: 0.375rem;
+    --h5p-theme-border-radius-small: 0.25rem;
+    --h5p-theme-font-name: "Inter", sans-serif;
+    --h5p-theme-feedback-correct-main: #256d1d;
+    --h5p-theme-feedback-correct-secondary: #f3fcf0;
+    --h5p-theme-feedback-correct-third: #cff1c2;
+    --h5p-theme-feedback-incorrect-main: #a13236;
+    --h5p-theme-feedback-incorrect-secondary: #faf0f4;
+    --h5p-theme-feedback-incorrect-third: #f6dce7;
+    --h5p-theme-feedback-neutral-main: #e6c81d;
+    --h5p-theme-feedback-neutral-secondary: #5e4817;
+    --h5p-theme-feedback-neutral-third: #f0ebcb;
+    --h5p-theme-spacing-xl-primary-small: calc(var(--h5p-theme-spacing-xl-primary-medium) * 0.8);
+    --h5p-theme-spacing-primary-small: calc(var(--h5p-theme-spacing-primary-medium) * 0.8);
+    --h5p-theme-spacing-secondary-small: calc(var(--h5p-theme-spacing-secondary-medium) * 0.8);
+    --h5p-theme-spacing-third-small: calc(var(--h5p-theme-spacing-third-medium) * 0.8);
+    --h5p-theme-spacing-fourth-small: calc(var(--h5p-theme-spacing-fourth-medium) * 0.8);
+    --h5p-theme-spacing-fifth-small: calc(var(--h5p-theme-spacing-fifth-medium) * 0.8);
+    --h5p-theme-font-size-xxl-small: calc(var(--h5p-theme-font-size-xxl-medium) * 1);
+    --h5p-theme-font-size-xl-small: calc(var(--h5p-theme-font-size-xl-medium) * 1);
+    --h5p-theme-font-size-l-small: calc(var(--h5p-theme-font-size-l-medium) * 1);
+    --h5p-theme-font-size-m-small: calc(var(--h5p-theme-font-size-m-medium) * 1);
+    --h5p-theme-font-size-s-small: calc(var(--h5p-theme-font-size-s-medium) * 1);
+    --h5p-theme-spacing-xl-primary-medium: calc(var(--h5p-theme-spacing-xl-primary-large) * 0.8);
+    --h5p-theme-spacing-primary-medium: calc(var(--h5p-theme-spacing-primary-large) * 0.8);
+    --h5p-theme-spacing-secondary-medium: calc(var(--h5p-theme-spacing-secondary-large) * 0.8);
+    --h5p-theme-spacing-third-medium: calc(var(--h5p-theme-spacing-third-large) * 0.8);
+    --h5p-theme-spacing-fourth-medium: calc(var(--h5p-theme-spacing-fourth-large) * 0.8);
+    --h5p-theme-spacing-fifth-medium: calc(var(--h5p-theme-spacing-fifth-large) * 0.8);
+    --h5p-theme-font-size-xxl-medium: calc(var(--h5p-theme-font-size-xxl-large) * 0.9);
+    --h5p-theme-font-size-xl-medium: calc(var(--h5p-theme-font-size-xl-large) * 0.9);
+    --h5p-theme-font-size-l-medium: calc(var(--h5p-theme-font-size-l-large) * 0.9);
+    --h5p-theme-font-size-m-medium: calc(var(--h5p-theme-font-size-m-large) * 0.9);
+    --h5p-theme-font-size-s-medium: calc(var(--h5p-theme-font-size-s-large) * 0.9);
+    --h5p-theme-spacing-xl-primary-large: 3rem;
+    --h5p-theme-spacing-primary-large: 2rem;
+    --h5p-theme-spacing-secondary-large: 1.5rem;
+    --h5p-theme-spacing-third-large: 1rem;
+    --h5p-theme-spacing-fourth-large: 0.65rem;
+    --h5p-theme-spacing-fifth-large: 0.5rem;
+    --h5p-theme-font-size-xxl-large: 1.5rem;
+    --h5p-theme-font-size-xl-large: 1.25rem;
+    --h5p-theme-font-size-l-large: 1.125rem;
+    --h5p-theme-font-size-m-large: 1rem;
+    --h5p-theme-font-size-s-large: 0.85rem;
 }
 
 .h5p-content,
