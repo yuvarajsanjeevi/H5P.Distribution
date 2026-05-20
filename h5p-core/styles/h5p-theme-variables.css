@@ -1,19 +1,19 @@
 :root {
-  --h5p-theme-main-cta-base: #006FBF;
-  --h5p-theme-secondary-cta-base: #E3E9F1;
+  --h5p-theme-main-cta-base: #1d5cff;           /* legacy: element button blue */
+  --h5p-theme-secondary-cta-base: #0085FF;      /* legacy: progressbar active fill */
   --h5p-theme-alternative-base: #F1F5FB;
   --h5p-theme-background: #F9FBFF;
-  --h5p-theme-focus: #006FBF; /*TODO: not yet in use */
+  --h5p-theme-focus: #457ad1;
 
-  --h5p-theme-main-cta-light: #007CD6;
-  --h5p-theme-main-cta-dark: #005FA3;
+  --h5p-theme-main-cta-light: #0097fd;          /* legacy: scrollbar / slide button blue */
+  --h5p-theme-main-cta-dark: #096bcb;           /* legacy: gradient dark end */
   --h5p-theme-contrast-cta: #EBF7FF;
-  --h5p-theme-contrast-cta-white: #006FBF;
+  --h5p-theme-contrast-cta-white: #457ad1;      /* legacy: focus outline color */
 
-  --h5p-theme-contrast-cta-light: color-mix(in srgb, var(--h5p-theme-main-cta-base), transparent 90%);
+  --h5p-theme-contrast-cta-light: rgba(121,171,253,.2); /* legacy: focus background */
 
   --h5p-theme-secondary-cta-light: #F5F7FA;
-  --h5p-theme-secondary-cta-dark: #D3DCE9;
+  --h5p-theme-secondary-cta-dark: #1a73d9;      /* legacy: progressbar gradient end */
   --h5p-theme-secondary-contrast-cta: #202122;
   --h5p-theme-secondary-contrast-cta-hover: #EBF7FF;
 
