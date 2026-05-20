@@ -23,7 +23,7 @@ H5P.$window = H5P.jQuery(window);
 H5P.instances = [];
 
 // Detect if we support fullscreen, and what prefix to use.
-if (document.documentElement.requestFullScreen) {
+if (document.documentElement.requestFullscreen) {
   /**
    * Browser prefix to use when entering fullscreen mode.
    * undefined means no fullscreen support.
@@ -103,6 +103,12 @@ H5P.init = function (target) {
       params: JSON.parse(contentData.jsonContent),
       metadata: contentData.metadata
     };
+
+    // Apply theme density class if theme is configured
+    if (H5PIntegration.theme) {
+      let density = H5PIntegration.theme.density || 'large';
+      $element.addClass('h5p-' + density);
+    }
 
     H5P.getUserData(contentId, 'state', function (err, previousState) {
       if (previousState) {
@@ -379,7 +385,7 @@ H5P.init = function (target) {
   H5P.jQuery('iframe.h5p-iframe:not(.h5p-initialized)', target).each(function () {
     var contentId = H5P.jQuery(this).addClass('h5p-initialized').data('content-id');
     this.contentDocument.open();
-    this.contentDocument.write('<!doctype html><html class="h5p-iframe"><head>' + H5P.getHeadTags(contentId) + '</head><body><div class="h5p-content" data-content-id="' + contentId + '"/></body></html>');
+    this.contentDocument.write('<!doctype html><html class="h5p-iframe" lang="' + (H5PIntegration.defaultLang || 'en') + '"><head>' + H5P.getHeadTags(contentId) + '</head><body><div class="h5p-content" data-content-id="' + contentId + '"/></body></html>');
     this.contentDocument.close();
   });
 };
@@ -643,7 +649,7 @@ H5P.fullScreen = function ($element, instance, exitCallback, body, forceSemiFull
 
     before('h5p-fullscreen');
     var first, eventName = (H5P.fullScreenBrowserPrefix === 'ms' ? 'MSFullscreenChange' : H5P.fullScreenBrowserPrefix + 'fullscreenchange');
-    document.addEventListener(eventName, function () {
+    var fullscreenCallback = function () {
       if (first === undefined) {
         // We are entering fullscreen mode
         first = false;
@@ -653,11 +659,12 @@ H5P.fullScreen = function ($element, instance, exitCallback, body, forceSemiFull
 
       // We are exiting fullscreen
       done('h5p-fullscreen');
-      document.removeEventListener(eventName, arguments.callee, false);
-    });
+      document.removeEventListener(eventName, fullscreenCallback, false);
+    };
+    document.addEventListener(eventName, fullscreenCallback);
 
     if (H5P.fullScreenBrowserPrefix === '') {
-      $element[0].requestFullScreen();
+      $element[0].requestFullscreen();
     }
     else {
       var method = (H5P.fullScreenBrowserPrefix === 'ms' ? 'msRequestFullscreen' : H5P.fullScreenBrowserPrefix + 'RequestFullScreen');
@@ -1038,12 +1045,14 @@ H5P.t = function (key, vars, ns) {
  * @param {H5P.jQuery} $element
  *   Which DOM element the dialog should be inserted after.
  */
-H5P.Dialog = function (name, title, content, $element) {
+H5P.Dialog = function (name, title, content, $element, $returnElement) {
   /** @alias H5P.Dialog# */
   var self = this;
-  var $dialog = H5P.jQuery('<div class="h5p-popup-dialog h5p-' + name + '-dialog" role="dialog" tabindex="-1">\
+  var titleId = 'h5p-dialog-' + name + '-' + H5P.Dialog.uniqueId;
+  H5P.Dialog.uniqueId++;
+  var $dialog = H5P.jQuery('<div class="h5p-popup-dialog h5p-' + name + '-dialog" role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="' + titleId + '">\
                               <div class="h5p-inner">\
-                                <h2>' + title + '</h2>\
+                                <h2 id="' + titleId + '">' + title + '</h2>\
                                 <div class="h5p-scroll-content">' + content + '</div>\
                                 <div class="h5p-close" role="button" tabindex="0" aria-label="' + H5P.t('close') + '" title="' + H5P.t('close') + '"></div>\
                               </div>\
@@ -1101,11 +1110,18 @@ H5P.Dialog = function (name, title, content, $element) {
     setTimeout(function () {
       $dialog.remove();
       H5P.jQuery(self).trigger('dialog-closed', [$dialog]);
-      $element.attr('tabindex', '-1');
-      $element.focus();
+      if ($returnElement) {
+        $returnElement.focus();
+      }
+      else {
+        $element.attr('tabindex', '-1');
+        $element.focus();
+      }
     }, 200);
   };
 };
+
+H5P.Dialog.uniqueId = 0;
 
 /**
  * Gather copyright information for the given content.
@@ -2062,6 +2078,12 @@ H5P.libraryFromString = function (library) {
  *   The full path to the library.
  */
 H5P.getLibraryPath = function (library) {
+  if (H5PIntegration.libraryDirectories !== undefined) {
+    var dir = H5PIntegration.libraryDirectories[library];
+    if (dir !== undefined) {
+      return H5PIntegration.url + '/' + dir;
+    }
+  }
   if (H5PIntegration.urlLibraries !== undefined) {
     // This is an override for those implementations that has a different libraries URL, e.g. Moodle
     return H5PIntegration.urlLibraries + '/' + library;
@@ -2110,6 +2132,22 @@ H5P.trim = function (value) {
   // TODO: Only include this or String.trim(). What is best?
   // I'm leaning towards implementing the missing ones: http://kangax.github.io/compat-table/es5/
   // So should we make this function deprecated?
+};
+
+/**
+ * Check if value is empty (null, undefined, empty string, or empty object).
+ *
+ * @param {*} value
+ * @returns {boolean}
+ */
+H5P.isEmpty = function (value) {
+  if (value === null || value === undefined || value === '') {
+    return true;
+  }
+  if (typeof value === 'object') {
+    return Object.keys(value).length === 0;
+  }
+  return false;
 };
 
 /**
@@ -2344,7 +2382,8 @@ H5P.createTitle = function (rawTitle, maxLength) {
       options.data = {
         data: (data === null ? 0 : data),
         preload: (preload ? 1 : 0),
-        invalidate: (invalidate ? 1 : 0)
+        invalidate: (invalidate ? 1 : 0),
+        contentHash: (H5PIntegration.contents && H5PIntegration.contents['cid-' + contentId] ? H5PIntegration.contents['cid-' + contentId].contentHash : '')
       };
     }
     else {

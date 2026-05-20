@@ -2003,7 +2003,10 @@ class H5PCore {
   public static $styles = array(
     'styles/h5p.css',
     'styles/h5p-confirmation-dialog.css',
-    'styles/h5p-core-button.css'
+    'styles/h5p-core-button.css',
+    'styles/h5p-theme-variables.css',
+    'styles/h5p-fonts.css',
+    'styles/h5p-theme.css'
   );
   public static $scripts = array(
     'js/jquery.js',
