@@ -74,6 +74,14 @@ H5P.ConfirmationDialog = (function (EventDispatcher) {
     popupBackground.classList
       .add('h5p-confirmation-dialog-background', 'hidden', 'hiding');
 
+    // Apply h5p-theme class if theme option is set
+    if (options.theme) {
+      popupBackground.classList.add('h5p-theme');
+      if (H5PIntegration && H5PIntegration.theme && H5PIntegration.theme.density) {
+        popupBackground.classList.add('h5p-' + H5PIntegration.theme.density);
+      }
+    }
+
     // Create outer popup
     var popup = document.createElement('div');
     popup.classList.add('h5p-confirmation-dialog-popup', 'hidden');
@@ -84,6 +92,7 @@ H5P.ConfirmationDialog = (function (EventDispatcher) {
     }
 
     popup.setAttribute('role', 'dialog');
+    popup.setAttribute('aria-modal', 'true');
     popup.setAttribute('aria-labelledby', 'h5p-confirmation-dialog-dialog-text-' + uniqueId);
     popupBackground.appendChild(popup);
     popup.addEventListener('keydown', function (e) {
@@ -124,12 +133,18 @@ H5P.ConfirmationDialog = (function (EventDispatcher) {
     // Cancel button
     var cancelButton = document.createElement('button');
     cancelButton.classList.add('h5p-core-cancel-button');
+    if (options.theme) {
+      cancelButton.classList.add('h5p-theme-button', 'h5p-theme-secondary-cta', 'h5p-theme-cancel');
+    }
     cancelButton.textContent = options.cancelText;
 
     // Confirm button
     var confirmButton = document.createElement('button');
     confirmButton.classList.add('h5p-core-button');
     confirmButton.classList.add('h5p-confirmation-dialog-confirm-button');
+    if (options.theme) {
+      confirmButton.classList.add('h5p-theme-button', 'h5p-theme-primary-cta', 'h5p-theme-check');
+    }
     confirmButton.textContent = options.confirmText;
 
     // Exit button
